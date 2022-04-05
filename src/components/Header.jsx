@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useAlert } from 'react-alert'
 
 import SearchBar from './SearchBar'
+import { RESET_STATUS } from '../actions/type'
 
 const Header = () => {
+  const alert = useAlert()
+  const dispatch = useDispatch()
+  const status = useSelector(state => state.status)
+
+  useEffect(() => {
+    if (status.status) {
+      alert.show(<div>{status.message}</div>, {
+        type: `${status.status}`,
+        position: 'top center',
+        timeout: 2000,
+        offset: '30px',
+        transition: 'scale'
+      })
+      dispatch({ type: RESET_STATUS })
+    }
+  }, [status])
+
   const renderAuthButton = () => {
     return (
       <Link
