@@ -1,10 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import AuthForm from '../components/AuthForm'
+import { logIn } from '../actions/Auth'
 
 const Login = () => {
+  const dispatch = useDispatch()
+
   const onSubmit = formValues => {
-    console.log('hi')
+    dispatch(logIn(formValues))
   }
 
   return (
