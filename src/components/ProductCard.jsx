@@ -13,7 +13,7 @@ const ProductCard = ({ products }) => {
 
   const ratingTemplate = (max, ratings) => {
     return Array.from({ length: max }, (_, i) => i + 1).map(num => (
-      <i className={`mdi mdi-star text-sm ${ratings >= num ? 'text-red-500' : 'text-gray-500'}`} />
+      <i key={num} className={`mdi mdi-star text-sm ${ratings >= num ? 'text-red-500' : 'text-gray-500'}`} />
     ))
   }
 
