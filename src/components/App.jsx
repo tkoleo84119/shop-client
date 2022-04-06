@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Header from './Header'
+import Footer from './Footer'
 
 import Home from '../page/Home'
 import Login from '../page/Login'
@@ -10,7 +11,7 @@ import ForgetPassword from '../page/ForgetPassword'
 
 const App = () => {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Router>
         <Header />
         <Routes>
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="signUp" element={<SignUp />} />
           <Route path="forgetPassword" element={<ForgetPassword />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   )
