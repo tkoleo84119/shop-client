@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 
 import { getAllProducts } from '../actions/Product'
 import ProductCard from '../components/ProductCard'
@@ -8,10 +9,13 @@ import HomeSideBar from '../components/HomeSideBar'
 const Home = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const params = useSelector(state => state.params)
+  const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
-    dispatch(getAllProducts())
-  }, [])
+    setSearchParams(params)
+    dispatch(getAllProducts(params))
+  }, [params])
 
   return (
     <React.Fragment>

@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { authReducer as auth } from './reducers/authReducer'
 import { statusReducer as status } from './reducers/statusReducer'
 import { productReducer as products } from './reducers/productReducer'
+import { paramsReducer as params } from './reducers/paramsReducer'
 import { cartReducer as cart } from './reducers/cartReducer'
 
 const preloadedAuthState = () => {
@@ -16,7 +17,7 @@ const preloadedCartState = () => {
 }
 
 export default configureStore({
-  reducer: { auth, status, products, cart },
+  reducer: { auth, status, products, cart, params },
   preloadedState: {
     auth: preloadedAuthState(),
     cart: preloadedCartState()

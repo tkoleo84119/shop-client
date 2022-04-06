@@ -12,6 +12,10 @@ export const RESET_STATUS = 'RESET_STATUS'
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 
+// Product Params related
+export const ADD_PARAMS_CATEGORY = 'ADD_PARAMS_CATEGORY'
+export const REMOVE_PARAMS_CATEGORY = 'REMOVE_PARAMS_CATEGORY'
+
 // Cart related
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
