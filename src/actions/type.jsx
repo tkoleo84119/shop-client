@@ -18,6 +18,11 @@ export const REMOVE_PARAMS_CATEGORY = 'REMOVE_PARAMS_CATEGORY'
 export const ADD_PARAMS_NAME = 'ADD_PARAMS_NAME'
 export const REMOVE_PARAMS_NAME = 'REMOVE_PARAMS_NAME'
 
+// Product page related
+export const NEXT_PAGE = 'NEXT_PAGE'
+export const PRE_PAGE = 'PRE_PAGE'
+export const RESET_PAGE = 'RESET_PAGE'
+
 // Cart related
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'

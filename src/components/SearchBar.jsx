@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-import { ADD_PARAMS_NAME, REMOVE_PARAMS_NAME } from '../actions/type'
+import { ADD_PARAMS_NAME, REMOVE_PARAMS_NAME, RESET_PAGE } from '../actions/type'
 
 const SearchBar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
+  const page = useSelector(state => state.page)
   const [term, setTerm] = useState('')
 
   useEffect(() => {
@@ -25,6 +26,8 @@ const SearchBar = () => {
         dispatch({ type: REMOVE_PARAMS_NAME })
         return navigate('/')
       }
+
+      if (page.page !== 1) dispatch({ type: RESET_PAGE })
 
       dispatch(dispatch({ type: ADD_PARAMS_NAME, value: term }))
       navigate('/products')

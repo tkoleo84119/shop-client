@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-import { REMOVE_PARAMS_CATEGORY, ADD_PARAMS_CATEGORY } from '../actions/type'
+import { REMOVE_PARAMS_CATEGORY, ADD_PARAMS_CATEGORY, RESET_PAGE } from '../actions/type'
 
 const HomeSideBar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
+  const page = useSelector(state => state.page)
   const [inputValue, setInputValue] = useState('')
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const HomeSideBar = () => {
 
   useEffect(() => {
     if (!inputValue) return dispatch({ type: REMOVE_PARAMS_CATEGORY })
+    if (page.page !== 1) dispatch({ type: RESET_PAGE })
 
     dispatch({ type: ADD_PARAMS_CATEGORY, value: inputValue })
     if (location.pathname !== '/products') return navigate('/products')

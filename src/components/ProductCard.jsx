@@ -92,8 +92,8 @@ const ProductCard = ({ products }) => {
     )
   }
 
-  return Object.keys(products).map(id => {
-    return cardTemplate(products[id])
+  return Object.keys(products).map((id, i) => {
+    if (i < 10) return cardTemplate(products[id])
   })
 }
 
