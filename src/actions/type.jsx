@@ -7,3 +7,6 @@ export const GET_CURRENT_USER = 'GET_CURRENT_USER'
 export const ERROR_STATUS = 'ERROR_STATUS'
 export const SUCCESS_STATUS = 'SUCCESS_STATUS'
 export const RESET_STATUS = 'RESET_STATUS'
+
+// Product related
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
