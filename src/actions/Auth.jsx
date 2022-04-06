@@ -1,6 +1,16 @@
 import { shop } from '../apis/shopApi'
 import { LOGIN, LOGOUT, GET_CURRENT_USER, ERROR_STATUS, SUCCESS_STATUS } from './type'
 
+export const signUp = formValues => async dispatch => {
+  let res
+  try {
+    res = await shop.post('/users/signup', { ...formValues })
+    dispatch({ type: SUCCESS_STATUS, payload: res.data })
+  } catch (err) {
+    dispatch({ type: ERROR_STATUS, payload: err.response.data })
+  }
+}
+
 export const logIn = formValues => async dispatch => {
   let res
   try {
