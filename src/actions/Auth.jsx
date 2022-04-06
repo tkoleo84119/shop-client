@@ -4,7 +4,7 @@ import { LOGIN, LOGOUT, GET_CURRENT_USER, ERROR_STATUS, SUCCESS_STATUS } from '.
 export const signUp = formValues => async dispatch => {
   let res
   try {
-    res = await shop.post('/users/signup', { ...formValues })
+    res = await shop.post('/users/signup', formValues)
     dispatch({ type: SUCCESS_STATUS, payload: res.data })
   } catch (err) {
     dispatch({ type: ERROR_STATUS, payload: err.response.data })
@@ -14,8 +14,18 @@ export const signUp = formValues => async dispatch => {
 export const logIn = formValues => async dispatch => {
   let res
   try {
-    res = await shop.post('/users/signin', { ...formValues })
+    res = await shop.post('/users/signin', formValues)
     dispatch({ type: LOGIN, payload: res.data })
+    dispatch({ type: SUCCESS_STATUS, payload: res.data })
+  } catch (err) {
+    dispatch({ type: ERROR_STATUS, payload: err.response.data })
+  }
+}
+
+export const forgetPassword = formValues => async dispatch => {
+  let res
+  try {
+    res = await shop.post('/users/forgetPassword', formValues)
     dispatch({ type: SUCCESS_STATUS, payload: res.data })
   } catch (err) {
     dispatch({ type: ERROR_STATUS, payload: err.response.data })
