@@ -10,9 +10,15 @@ const preloadedAuthState = () => {
   return auth
 }
 
+const preloadedCartState = () => {
+  const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {}
+  return cart
+}
+
 export default configureStore({
   reducer: { auth, status, products, cart },
   preloadedState: {
-    auth: preloadedAuthState()
+    auth: preloadedAuthState(),
+    cart: preloadedCartState()
   }
 })
