@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { authReducer as auth } from './reducers/authReducer'
 import { statusReducer as status } from './reducers/statusReducer'
 import { productReducer as products } from './reducers/productReducer'
+import { cartReducer as cart } from './reducers/cartReducer'
 
 const preloadedAuthState = () => {
   const auth = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : {}
@@ -10,7 +11,7 @@ const preloadedAuthState = () => {
 }
 
 export default configureStore({
-  reducer: { auth, status, products },
+  reducer: { auth, status, products, cart },
   preloadedState: {
     auth: preloadedAuthState()
   }
