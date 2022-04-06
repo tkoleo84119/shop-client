@@ -1,11 +1,25 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import _ from 'lodash'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import AuthForm from '../components/AuthForm'
 import { logIn } from '../actions/Auth'
 
 const Login = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const auth = useSelector(state => state.auth)
+  const status = useSelector(state => state.status.status)
+
+  useEffect(() => {
+    if (status === 'success') {
+      setTimeout(() => {
+        localStorage.setItem('auth', JSON.stringify(_.omit(auth, 'user'))) // Not storage user info in localStorage
+        navigate('/')
+      }, 1500)
+    }
+  }, [status])
 
   const onSubmit = formValues => {
     dispatch(logIn(formValues))
