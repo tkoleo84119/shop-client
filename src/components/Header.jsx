@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
 
 import SearchBar from './SearchBar'
+import { getCurrentUser } from '../actions/Auth'
 import { SUCCESS_STATUS, RESET_STATUS, LOGOUT } from '../actions/type'
 
 const Header = () => {
@@ -12,6 +13,10 @@ const Header = () => {
   const navigate = useNavigate()
   const status = useSelector(state => state.status)
   const auth = useSelector(state => state.auth)
+
+  useEffect(() => {
+    if (auth?.token && !auth.user) dispatch(getCurrentUser(auth.token))
+  }, [])
 
   useEffect(() => {
     if (status.status) {
