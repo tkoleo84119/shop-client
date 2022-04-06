@@ -8,6 +8,7 @@ import Home from '../page/Home'
 import Login from '../page/Login'
 import SignUp from '../page/SignUp'
 import ForgetPassword from '../page/ForgetPassword'
+import ProductDetail from '../page/ProductDetail'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="signUp" element={<SignUp />} />
           <Route path="forgetPassword" element={<ForgetPassword />} />
+          <Route path="products/:id" element={<ProductDetail />} />
         </Routes>
         <Footer />
       </Router>
