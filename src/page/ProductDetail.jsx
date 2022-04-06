@@ -3,16 +3,20 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getProduct } from '../actions/Product'
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/type'
 
 const ProductDetail = () => {
   const dispatch = useDispatch()
   const params = useParams()
   const product = useSelector(state => state.products[params.id])
   const auth = useSelector(state => state.auth)
+  const cart = useSelector(state => state.cart)
 
   useEffect(() => {
     dispatch(getProduct(params.id))
   }, [params])
+
+  useEffect(() => localStorage.setItem('cart', JSON.stringify(cart)), [cart])
 
   const ratingTemplate = (max, ratings) => {
     return Array.from({ length: max }, (_, i) => i + 1).map(num => (
@@ -65,12 +69,26 @@ const ProductDetail = () => {
     )
   }
 
-  const renderCartButton = () => {
+  const renderCartButton = id => {
     if (auth?.user?.role === 'admin') return null
 
+    if (!cart[id]) {
+      return (
+        <button
+          className="ml-auto flex rounded border-0 bg-red-500 py-2 px-6 text-white hover:bg-red-600 focus:outline-none"
+          onClick={() => {
+            dispatch({ type: ADD_TO_CART, product: { ...product, num: 1 } })
+          }}>
+          Add to cart
+        </button>
+      )
+    }
+
     return (
-      <button className="ml-auto flex rounded border-0 bg-red-500 py-2 px-6 text-white hover:bg-red-600 focus:outline-none">
-        Add to cart
+      <button
+        className="ml-auto flex rounded border-0 bg-red-500 py-2 px-6 text-white hover:bg-red-600 focus:outline-none"
+        onClick={() => dispatch({ type: REMOVE_FROM_CART, id })}>
+        Remove from cart
       </button>
     )
   }
