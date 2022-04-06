@@ -13,6 +13,7 @@ const Header = () => {
   const navigate = useNavigate()
   const status = useSelector(state => state.status)
   const auth = useSelector(state => state.auth)
+  const cart = useSelector(state => state.cart)
 
   useEffect(() => {
     if (auth?.token && !auth.user) dispatch(getCurrentUser(auth.token))
@@ -30,6 +31,15 @@ const Header = () => {
       dispatch({ type: RESET_STATUS })
     }
   }, [status])
+
+  const renderCartNumber = () => {
+    if (Object.keys(cart).length > 0)
+      return (
+        <div class="absolute -top-2 -right-2 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
+          {Object.keys(cart).length}
+        </div>
+      )
+  }
 
   const renderAuthButton = () => {
     if (auth.isLoggedIn) {
@@ -70,6 +80,7 @@ const Header = () => {
         <Link to="/cart">
           <button className="relative mx-2 h-10 w-10 rounded-full border border-white text-center transition duration-150 ease-in hover:bg-red-800 hover:text-white focus:outline-none">
             <i className="mdi mdi-cart"></i>
+            {renderCartNumber()}
           </button>
         </Link>
       </React.Fragment>
