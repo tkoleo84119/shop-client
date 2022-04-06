@@ -15,6 +15,8 @@ export const GET_PRODUCT = 'GET_PRODUCT'
 // Product Params related
 export const ADD_PARAMS_CATEGORY = 'ADD_PARAMS_CATEGORY'
 export const REMOVE_PARAMS_CATEGORY = 'REMOVE_PARAMS_CATEGORY'
+export const ADD_PARAMS_NAME = 'ADD_PARAMS_NAME'
+export const REMOVE_PARAMS_NAME = 'REMOVE_PARAMS_NAME'
 
 // Cart related
 export const ADD_TO_CART = 'ADD_TO_CART'
