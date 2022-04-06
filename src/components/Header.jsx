@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
 
 import SearchBar from './SearchBar'
-import { RESET_STATUS } from '../actions/type'
+import { SUCCESS_STATUS, RESET_STATUS, LOGOUT } from '../actions/type'
 
 const Header = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const status = useSelector(state => state.status)
+  const auth = useSelector(state => state.auth)
 
   useEffect(() => {
     if (status.status) {
@@ -25,6 +27,24 @@ const Header = () => {
   }, [status])
 
   const renderAuthButton = () => {
+    if (auth.isLoggedIn) {
+      return (
+        <button
+          onClick={() => {
+            dispatch({ type: LOGOUT })
+            localStorage.removeItem('auth')
+            dispatch({
+              type: SUCCESS_STATUS,
+              payload: { status: 'success', message: 'Logout successfully' }
+            })
+            navigate('/')
+          }}
+          className="mr-6 rounded-lg bg-red-800 px-4 py-3 text-center font-bold text-white transition duration-300 ease-in-out hover:bg-red-700">
+          Login Out
+        </button>
+      )
+    }
+
     return (
       <Link
         to="/login"
