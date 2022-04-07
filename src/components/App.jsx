@@ -15,6 +15,7 @@ import SignUp from '../page/SignUp'
 import ForgetPassword from '../page/ForgetPassword'
 import ProductDetail from '../page/ProductDetail'
 import Profile from '../page/Profile'
+import OrderDetail from '../page/OrderDetail'
 import Cart from '../page/Cart'
 import Checkout from '../page/Checkout'
 import Success from '../page/Success'
@@ -38,6 +39,7 @@ const App = () => {
               <Route path="orderList" element={<ProfileOrderList />} />
               <Route path="productList" element={<ProfileProductList />} />
             </Route>
+            <Route path="orders/:id" element={<OrderDetail />} />
             <Route path="products/create" element={<ProductForm />} />
             <Route path="products/edit/:id" element={<ProductForm />} />
             <Route path="cart" element={<Cart />} />
