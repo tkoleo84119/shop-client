@@ -5,6 +5,7 @@ import Header from './Header'
 import Footer from './Footer'
 import PrivateWrapper from './PrivateWrapper'
 import ProfileUserInfo from './ProfileUserInfo'
+import ProfileOrderList from './ProfileOrderList'
 
 import Home from '../page/Home'
 import Login from '../page/Login'
@@ -28,6 +29,7 @@ const App = () => {
           <Route element={<PrivateWrapper />}>
             <Route path="profile" element={<Profile />}>
               <Route path="userInfo" element={<ProfileUserInfo />} />
+              <Route path="orderList" element={<ProfileOrderList />} />
             </Route>
           </Route>
         </Routes>
