@@ -17,6 +17,7 @@ import ProductDetail from '../page/ProductDetail'
 import Profile from '../page/Profile'
 import Cart from '../page/Cart'
 import Checkout from '../page/Checkout'
+import Success from '../page/Success'
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="products/edit/:id" element={<ProductForm />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="success/:id" element={<Success />} />
           </Route>
         </Routes>
         <Footer />
