@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import PrivateWrapper from './PrivateWrapper'
+import ProfileUserInfo from './ProfileUserInfo'
 
 import Home from '../page/Home'
 import Login from '../page/Login'
@@ -25,7 +26,9 @@ const App = () => {
           <Route path="products" element={<Home />} />
           <Route path="products/:id" element={<ProductDetail />} />
           <Route element={<PrivateWrapper />}>
-            <Route path="profile" element={<Profile />}></Route>
+            <Route path="profile" element={<Profile />}>
+              <Route path="userInfo" element={<ProfileUserInfo />} />
+            </Route>
           </Route>
         </Routes>
         <Footer />

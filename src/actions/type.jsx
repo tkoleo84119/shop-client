@@ -1,7 +1,9 @@
 // Auth relate
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 export const GET_CURRENT_USER = 'GET_CURRENT_USER'
+export const UPDATE_USER = 'UPDATE_USER'
 
 // Status related
 export const ERROR_STATUS = 'ERROR_STATUS'

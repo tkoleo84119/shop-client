@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,6 +19,10 @@ const Header = () => {
   useEffect(() => {
     if (auth?.token && !auth.user) dispatch(getCurrentUser(auth.token))
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem('auth', JSON.stringify(_.omit(auth, 'user')))
+  }, [auth.token])
 
   useEffect(() => {
     if (status.status) {
