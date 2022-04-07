@@ -20,6 +20,7 @@ import Cart from '../page/Cart'
 import Checkout from '../page/Checkout'
 import Success from '../page/Success'
 import Cancel from '../page/Cancel'
+import Review from '../page/Review'
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="checkout" element={<Checkout />} />
             <Route path="success/:id" element={<Success />} />
             <Route path="cancel" element={<Cancel />} />
+            <Route path="reviews/:id" element={<Review />} />
           </Route>
         </Routes>
         <Footer />
