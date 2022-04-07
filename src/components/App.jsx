@@ -15,6 +15,7 @@ import SignUp from '../page/SignUp'
 import ForgetPassword from '../page/ForgetPassword'
 import ProductDetail from '../page/ProductDetail'
 import Profile from '../page/Profile'
+import Cart from '../page/Cart'
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             </Route>
             <Route path="products/create" element={<ProductForm />} />
             <Route path="products/edit/:id" element={<ProductForm />} />
+            <Route path="cart" element={<Cart />} />
           </Route>
         </Routes>
         <Footer />

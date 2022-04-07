@@ -40,7 +40,7 @@ const Header = () => {
   const renderCartNumber = () => {
     if (Object.keys(cart).length > 0)
       return (
-        <div class="absolute -top-2 -right-2 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
+        <div className="absolute -top-2 -right-2 rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
           {Object.keys(cart).length}
         </div>
       )

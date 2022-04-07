@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/type'
+import { ADD_TO_CART, CHANGE_PRO_NUM, REMOVE_FROM_CART } from '../actions/type'
 
 export const cartReducer = (state = {}, action) => {
   switch (action.type) {
@@ -7,6 +7,8 @@ export const cartReducer = (state = {}, action) => {
       return { ...state, [action.product._id]: action.product }
     case REMOVE_FROM_CART:
       return _.omit(state, [action.id])
+    case CHANGE_PRO_NUM:
+      return { ...state, [action.id]: action.product }
     default:
       return state
   }
