@@ -7,6 +7,7 @@ import PrivateWrapper from './PrivateWrapper'
 import ProfileUserInfo from './ProfileUserInfo'
 import ProfileOrderList from './ProfileOrderList'
 import ProfileProductList from './ProfileProductList'
+import ProductForm from './ProductForm'
 
 import Home from '../page/Home'
 import Login from '../page/Login'
@@ -33,6 +34,8 @@ const App = () => {
               <Route path="orderList" element={<ProfileOrderList />} />
               <Route path="productList" element={<ProfileProductList />} />
             </Route>
+            <Route path="products/create" element={<ProductForm />} />
+            <Route path="products/edit/:id" element={<ProductForm />} />
           </Route>
         </Routes>
         <Footer />
