@@ -22,3 +22,15 @@ export const createReview = (token, id, content, rating) => async dispatch => {
     })
   }
 }
+
+export const deleteReview = (token, id) => async dispatch => {
+  try {
+    await shop.delete(`/reviews/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+    dispatch({
+      type: SUCCESS_STATUS,
+      payload: { status: 'success', message: 'delete review successfully' }
+    })
+  } catch (err) {
+    dispatch({ type: ERROR_STATUS, payload: err.response.data })
+  }
+}

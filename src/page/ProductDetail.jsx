@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
+import DeleteModal from '../components/DeleteModal'
 import { getProduct } from '../actions/Product'
+import { deleteReview } from '../actions/Review'
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/type'
 
 const ProductDetail = () => {
@@ -11,12 +13,25 @@ const ProductDetail = () => {
   const product = useSelector(state => state.products[params.id])
   const auth = useSelector(state => state.auth)
   const cart = useSelector(state => state.cart)
+  const status = useSelector(state => state.status.status)
+  const [isVisible, setIsVisible] = useState(false)
+  const [reviewId, setReviewId] = useState('')
 
-  useEffect(() => {
-    dispatch(getProduct(params.id))
-  }, [params])
+  useEffect(() => dispatch(getProduct(params.id)), [params])
 
   useEffect(() => localStorage.setItem('cart', JSON.stringify(cart)), [cart])
+  
+  useEffect(() => {
+    if (status === 'success') dispatch(getProduct(params.id))
+  }, [status])
+
+  const handleToggleModalShowUp = () => {
+    setIsVisible(!isVisible)
+  }
+
+  const onDeleteConfirm = async id => {
+    dispatch(deleteReview(auth.token, id))
+  }
 
   const ratingTemplate = (max, ratings) => {
     return Array.from({ length: max }, (_, i) => i + 1).map(num => (
@@ -33,6 +48,7 @@ const ProductDetail = () => {
         <div
           className="shadow-xs relative mb-10 flex w-2/3 items-start rounded-2xl bg-white p-6"
           key={review._id}>
+          {renderDelete(review._id)}
           <div className="ml-6">
             <div className="flex items-baseline">
               <span className="mr-3 font-bold text-gray-600">{review.user.name}</span>
@@ -96,6 +112,20 @@ const ProductDetail = () => {
     )
   }
 
+  const renderDelete = id => {
+    if (auth.user.role === 'admin')
+      return (
+        <div
+          className="absolute right-6 top-3 cursor-pointer text-xl text-gray-500 hover:text-red-500"
+          onClick={() => {
+            handleToggleModalShowUp()
+            setReviewId(id)
+          }}>
+          x
+        </div>
+      )
+  }
+
   return (
     <React.Fragment>
       <section className="body-font overflow-hidden text-gray-600">
@@ -145,6 +175,12 @@ const ProductDetail = () => {
         </div>
         {renderRating()}
       </section>
+      <DeleteModal
+        isVisible={isVisible}
+        handleToggleModalShowUp={handleToggleModalShowUp}
+        onDeleteConfirm={onDeleteConfirm}
+        review={product?.reviews?.find(review => review._id === reviewId)}
+      />
     </React.Fragment>
   )
 }
