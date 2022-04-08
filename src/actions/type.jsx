@@ -15,6 +15,7 @@ export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 // Product Params related
 export const ADD_PARAMS_CATEGORY = 'ADD_PARAMS_CATEGORY'

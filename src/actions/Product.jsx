@@ -4,6 +4,7 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT,
   UPDATE_PRODUCT,
+  DELETE_PRODUCT,
   SUCCESS_STATUS,
   ERROR_STATUS
 } from './type'
@@ -74,6 +75,19 @@ export const updateProduct = (id, formValues, image, token) => async dispatch =>
     dispatch({
       type: SUCCESS_STATUS,
       payload: { ...res.data, message: 'update product successfully' }
+    })
+  } catch (err) {
+    dispatch({ type: ERROR_STATUS, payload: err.response.data })
+  }
+}
+
+export const deleteProduct = (token, id) => async dispatch => {
+  try {
+    await shop.delete(`/products/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+    dispatch({ type: DELETE_PRODUCT, id })
+    dispatch({
+      type: SUCCESS_STATUS,
+      payload: { status: 'success', message: 'delete product successfully' }
     })
   } catch (err) {
     dispatch({ type: ERROR_STATUS, payload: err.response.data })

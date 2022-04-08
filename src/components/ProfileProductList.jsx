@@ -1,16 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getAllProducts } from '../actions/Product'
+import DeleteModal from '../components/DeleteModal'
+import { getAllProducts, deleteProduct } from '../actions/Product'
 
 const ProductList = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const auth = useSelector(state => state.auth)
+  const [isVisible, setIsVisible] = useState(false)
+  const [productId, setProductIdId] = useState('')
 
   useEffect(() => {
     dispatch(getAllProducts())
   }, [])
+
+  const handleToggleModalShowUp = () => {
+    setIsVisible(!isVisible)
+  }
+
+  const onDeleteConfirm = id => {
+    dispatch(deleteProduct(auth.token, id))
+  }
 
   const ProductListTemplate = ({ _id, name, image, price, category, quantity }) => {
     return (
@@ -48,6 +60,10 @@ const ProductList = () => {
 
             <button
               type="button"
+              onClick={() => {
+                handleToggleModalShowUp()
+                setProductIdId(_id)
+              }}
               className="focus:shadow-outline mr-3 rounded bg-red-500 py-1 px-2 text-sm text-white hover:bg-red-700 focus:outline-none">
               Delete
             </button>
@@ -110,6 +126,12 @@ const ProductList = () => {
           </div>
         </div>
       </div>
+      <DeleteModal
+        isVisible={isVisible}
+        handleToggleModalShowUp={handleToggleModalShowUp}
+        onDeleteConfirm={onDeleteConfirm}
+        product={products[productId]}
+      />
     </React.Fragment>
   )
 }

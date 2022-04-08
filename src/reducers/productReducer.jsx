@@ -1,6 +1,12 @@
 import _ from 'lodash'
 
-import { CREATE_PRODUCT, GET_ALL_PRODUCTS, GET_PRODUCT, UPDATE_PRODUCT } from '../actions/type'
+import {
+  CREATE_PRODUCT,
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT,
+  UPDATE_PRODUCT,
+  DELETE_PRODUCT
+} from '../actions/type'
 
 export const productReducer = (state = {}, action) => {
   switch (action.type) {
@@ -12,6 +18,8 @@ export const productReducer = (state = {}, action) => {
       return { ...state, [action.payload.data.product._id]: action.payload.data.product }
     case UPDATE_PRODUCT:
       return { ...state, [action.payload.data.product._id]: action.payload.data.product }
+    case DELETE_PRODUCT:
+      return _.omit(state, [action.id])
     default:
       return state
   }
