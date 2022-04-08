@@ -11,10 +11,23 @@ const ProductList = () => {
   const auth = useSelector(state => state.auth)
   const [isVisible, setIsVisible] = useState(false)
   const [productId, setProductIdId] = useState('')
+  const [term, setTerm] = useState('')
+  const [debouncedTerm, setDebouncedTerm] = useState(term)
 
   useEffect(() => {
     dispatch(getAllProducts())
   }, [])
+
+  useEffect(() => {
+    const timerId = setTimeout(() => setDebouncedTerm(term), 1000)
+
+    return () => clearTimeout(timerId)
+  }, [term])
+
+  useEffect(() => {
+    if (debouncedTerm) return dispatch(getAllProducts({ name: debouncedTerm }))
+    return dispatch(getAllProducts())
+  }, [debouncedTerm])
 
   const handleToggleModalShowUp = () => {
     setIsVisible(!isVisible)
@@ -87,6 +100,7 @@ const ProductList = () => {
               <input
                 className="ml-1 block bg-gray-100 outline-none"
                 type="text"
+                onChange={e => setTerm(e.target.value)}
                 placeholder="search..."
               />
             </div>
