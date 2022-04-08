@@ -37,6 +37,19 @@ const Header = () => {
     }
   }, [status])
 
+  const cartTemplate = () => {
+    if (auth.user.role === 'admin') return null
+
+    return (
+      <Link to="/cart">
+        <button className="relative mx-2 h-10 w-10 rounded-full border border-white text-center transition duration-150 ease-in hover:bg-red-800 hover:text-white focus:outline-none">
+          <i className="mdi mdi-cart"></i>
+          {renderCartNumber()}
+        </button>
+      </Link>
+    )
+  }
+
   const renderCartNumber = () => {
     if (Object.keys(cart).length > 0)
       return (
@@ -75,6 +88,8 @@ const Header = () => {
   }
 
   const renderUserButton = () => {
+    if (!auth.isLoggedIn) return null
+
     return (
       <React.Fragment>
         <Link to="/profile/userInfo">
@@ -82,12 +97,7 @@ const Header = () => {
             <i className="mdi mdi-account"></i>
           </button>
         </Link>
-        <Link to="/cart">
-          <button className="relative mx-2 h-10 w-10 rounded-full border border-white text-center transition duration-150 ease-in hover:bg-red-800 hover:text-white focus:outline-none">
-            <i className="mdi mdi-cart"></i>
-            {renderCartNumber()}
-          </button>
-        </Link>
+        {cartTemplate()}
       </React.Fragment>
     )
   }
