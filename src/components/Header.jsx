@@ -38,7 +38,7 @@ const Header = () => {
   }, [status])
 
   const cartTemplate = () => {
-    if (auth.user.role === 'admin') return null
+    if (auth?.user?.role === 'admin') return null
 
     return (
       <Link to="/cart">

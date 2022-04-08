@@ -1,18 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 
-import { getAllOrders } from '../actions/Order'
+import DeleteModal from '../components/DeleteModal'
+import { getAllOrders, deleteOrder } from '../actions/Order'
 
 const ProfileOrderList = () => {
   const dispatch = useDispatch()
   const auth = useSelector(state => state.auth)
   const orders = useSelector(state => state.orders)
+  const [isVisible, setIsVisible] = useState(false)
+  const [orderId, setOrderId] = useState('')
 
-  useEffect(() => {
-    dispatch(getAllOrders(auth.token))
-  }, [])
+  useEffect(() => dispatch(getAllOrders(auth.token)), [])
+
+  const handleToggleModalShowUp = () => {
+    setIsVisible(!isVisible)
+  }
+
+  const onDeleteConfirm = async id => {
+    dispatch(deleteOrder(auth.token, id))
+  }
 
   const renderDetailButton = (id, paid) => {
     if (!paid) return null
@@ -28,7 +37,7 @@ const ProfileOrderList = () => {
   }
 
   const renderDeleteButton = id => {
-    if (auth.user.role === 'admin') {
+    if (auth?.user?.role === 'admin') {
       return (
         <button
           onClick={() => {
@@ -136,6 +145,12 @@ const ProfileOrderList = () => {
           </div>
         </div>
       </div>
+      <DeleteModal
+        isVisible={isVisible}
+        handleToggleModalShowUp={handleToggleModalShowUp}
+        onDeleteConfirm={onDeleteConfirm}
+        order={orders[orderId]}
+      />
     </React.Fragment>
   )
 }

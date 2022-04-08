@@ -1,6 +1,12 @@
 import { shop } from '../apis/shopApi'
 
-import { GET_ALL_ORDERS, GET_ORDER, SUCCESS_STATUS, ERROR_STATUS } from '../actions/type'
+import {
+  GET_ALL_ORDERS,
+  GET_ORDER,
+  DELETE_ORDER,
+  SUCCESS_STATUS,
+  ERROR_STATUS
+} from '../actions/type'
 
 export const checkout = (subTotal, token, cart) => async dispatch => {
   let res
@@ -32,6 +38,19 @@ export const getOrder = (token, id) => async dispatch => {
   try {
     res = await shop.get(`/orders/${id}`, { headers: { Authorization: `Bearer ${token}` } })
     dispatch({ type: GET_ORDER, payload: res.data })
+  } catch (err) {
+    dispatch({ type: ERROR_STATUS, payload: err.response.data })
+  }
+}
+
+export const deleteOrder = (token, id) => async dispatch => {
+  try {
+    await shop.delete(`/orders/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+    dispatch({ type: DELETE_ORDER, id })
+    dispatch({
+      type: SUCCESS_STATUS,
+      payload: { status: 'success', message: 'delete order successfully' }
+    })
   } catch (err) {
     dispatch({ type: ERROR_STATUS, payload: err.response.data })
   }
