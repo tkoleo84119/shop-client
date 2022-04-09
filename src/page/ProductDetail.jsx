@@ -20,7 +20,7 @@ const ProductDetail = () => {
   useEffect(() => dispatch(getProduct(params.id)), [params])
 
   useEffect(() => localStorage.setItem('cart', JSON.stringify(cart)), [cart])
-  
+
   useEffect(() => {
     if (status === 'success') dispatch(getProduct(params.id))
   }, [status])
@@ -48,7 +48,7 @@ const ProductDetail = () => {
         <div
           className="shadow-xs relative mb-10 flex w-2/3 items-start rounded-2xl bg-white p-6"
           key={review._id}>
-          {renderDelete(review._id)}
+          {renderDelete(review._id, review.user._id)}
           <div className="ml-6">
             <div className="flex items-baseline">
               <span className="mr-3 font-bold text-gray-600">{review.user.name}</span>
@@ -112,8 +112,8 @@ const ProductDetail = () => {
     )
   }
 
-  const renderDelete = id => {
-    if (auth.user.role === 'admin')
+  const renderDelete = (id, userId) => {
+    if (auth.user.role === 'admin' || auth.user._id === userId)
       return (
         <div
           className="absolute right-6 top-3 cursor-pointer text-xl text-gray-500 hover:text-red-500"
