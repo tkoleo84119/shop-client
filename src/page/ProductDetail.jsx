@@ -113,7 +113,7 @@ const ProductDetail = () => {
   }
 
   const renderDelete = (id, userId) => {
-    if (auth.user.role === 'admin' || auth.user._id === userId)
+    if (auth?.user?.role === 'admin' || auth?.user?._id === userId)
       return (
         <div
           className="absolute right-6 top-3 cursor-pointer text-xl text-gray-500 hover:text-red-500"
