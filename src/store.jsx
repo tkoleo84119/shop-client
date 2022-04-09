@@ -6,6 +6,7 @@ import { productReducer as products } from './reducers/productReducer'
 import { paramsReducer as params } from './reducers/paramsReducer'
 import { pageReducer as page } from './reducers/pageReducer'
 import { orderReducer as orders } from './reducers/orderReducer'
+import { reviewReducer as reviews } from './reducers/reviewReducer'
 import { cartReducer as cart } from './reducers/cartReducer'
 
 const preloadedAuthState = () => {
@@ -19,7 +20,7 @@ const preloadedCartState = () => {
 }
 
 export default configureStore({
-  reducer: { auth, status, products, cart, params, page, orders },
+  reducer: { auth, status, products, params, page, orders, reviews, cart },
   preloadedState: {
     auth: preloadedAuthState(),
     cart: preloadedCartState()

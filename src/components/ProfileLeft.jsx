@@ -8,21 +8,38 @@ const ProfileLeft = () => {
   const renderAdmin = () => {
     if (auth?.user?.role === 'admin')
       return (
-        <NavLink
-          end
-          to="/profile/productList"
-          className={({ isActive }) => {
-            return `${
-              isActive
-                ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
-                : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
-            } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
-          }}>
-          <span className="text-left">
-            <i className="mdi mdi-heart text-xl"></i>
-          </span>
-          <span className="mx-4 text-sm font-normal">Product List</span>
-        </NavLink>
+        <React.Fragment>
+          <NavLink
+            end
+            to="/profile/productList"
+            className={({ isActive }) => {
+              return `${
+                isActive
+                  ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
+                  : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
+              } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
+            }}>
+            <span className="text-left">
+              <i className="mdi mdi-heart text-xl"></i>
+            </span>
+            <span className="mx-4 text-sm font-normal">Product List</span>
+          </NavLink>
+          <NavLink
+            end
+            to="/profile/reviewList"
+            className={({ isActive }) => {
+              return `${
+                isActive
+                  ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
+                  : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
+              } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
+            }}>
+            <span className="text-left">
+              <i className="mdi mdi-comment-text-multiple text-xl"></i>
+            </span>
+            <span className="mx-4 text-sm font-normal">Review List</span>
+          </NavLink>
+        </React.Fragment>
       )
   }
 

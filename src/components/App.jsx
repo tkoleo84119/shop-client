@@ -7,6 +7,7 @@ import PrivateWrapper from './PrivateWrapper'
 import ProfileUserInfo from './ProfileUserInfo'
 import ProfileOrderList from './ProfileOrderList'
 import ProfileProductList from './ProfileProductList'
+import ProfileReviewList from './ProfileReviewList'
 import ProductForm from './ProductForm'
 
 import Home from '../page/Home'
@@ -39,6 +40,7 @@ const App = () => {
               <Route path="userInfo" element={<ProfileUserInfo />} />
               <Route path="orderList" element={<ProfileOrderList />} />
               <Route path="productList" element={<ProfileProductList />} />
+              <Route path="reviewList" element={<ProfileReviewList />} />
             </Route>
             <Route path="orders/:id" element={<OrderDetail />} />
             <Route path="products/create" element={<ProductForm />} />
