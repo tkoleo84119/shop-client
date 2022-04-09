@@ -34,28 +34,33 @@ const OrderDetail = () => {
         <td className="text-right">
           <span className="text-sm font-medium lg:text-base">${product.price * quantity}</span>
         </td>
-        <td className="text-right">
-          <Link to={`/reviews/${product._id}`} state={{ order }}>
-            <button>
-              <div className="h-auto w-auto">
-                <div className="h-full flex-1">
-                  <div className="flex h-full flex-1 items-center justify-center rounded-lg bg-red-500 p-2 text-white shadow">
-                    <div className="relative">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                      </svg>
-                    </div>
-                  </div>
+        <td className="text-right">{renderCreateReview(product._id)}</td>
+      </tr>
+    )
+  }
+
+  const renderCreateReview = id => {
+    if (auth.user.role === 'admin') return null
+    return (
+      <Link to={`/reviews/${id}`} state={{ order }}>
+        <button>
+          <div className="h-auto w-auto">
+            <div className="h-full flex-1">
+              <div className="flex h-full flex-1 items-center justify-center rounded-lg bg-red-500 p-2 text-white shadow">
+                <div className="relative">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                  </svg>
                 </div>
               </div>
-            </button>
-          </Link>
-        </td>
-      </tr>
+            </div>
+          </div>
+        </button>
+      </Link>
     )
   }
 
