@@ -10,9 +10,7 @@ import App from './components/App'
 import store from './store'
 import AlertTemplate from './components/AlertTemplate'
 
-const stripePromise = loadStripe(
-  'pk_test_51KhtKIGw0UfX0jGGm1o0FdcLgLHT8W3uB5GjGPZwVKFo9OewI7IaqNWzmEOuJyCHSEqZkx95btMaVjih53PNxfFs00v9smXsPR'
-)
+const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY)
 
 ReactDOM.render(
   <Provider store={store}>
