@@ -22,7 +22,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="my-6 flex justify-center">
+    <div className="my-6 flex justify-center min-h-screen items-center">
       <div className="pin-r pin-y flex w-full flex-col rounded-lg bg-white p-8 text-gray-800 shadow-lg md:w-4/5 lg:w-4/5">
         <div className="px-4">
           <div className="border-b p-4">
