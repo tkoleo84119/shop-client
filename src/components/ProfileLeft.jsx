@@ -15,7 +15,7 @@ const ProfileLeft = () => {
             className={({ isActive }) => {
               return `${
                 isActive
-                  ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
+                  ? 'border-r-4 border-red-500 bg-gradient-to-r from-white/10 to-red-100/25 text-red-500 dark:from-gray-700 dark:to-gray-800'
                   : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
               } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
             }}>
@@ -30,7 +30,7 @@ const ProfileLeft = () => {
             className={({ isActive }) => {
               return `${
                 isActive
-                  ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
+                  ? 'border-r-4 border-red-500 bg-gradient-to-r from-white/10 to-red-100/25 text-red-500 dark:from-gray-700 dark:to-gray-800'
                   : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
               } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
             }}>
@@ -55,7 +55,7 @@ const ProfileLeft = () => {
               className={({ isActive }) => {
                 return `${
                   isActive
-                    ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
+                    ? 'border-r-4 border-red-500 bg-gradient-to-r from-white/10 to-red-100/25 text-red-500 dark:from-gray-700 dark:to-gray-800'
                     : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
                 } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
               }}>
@@ -70,7 +70,7 @@ const ProfileLeft = () => {
               className={({ isActive }) => {
                 return `${
                   isActive
-                    ? 'border-r-4 border-red-500 bg-gradient-to-r from-white to-red-100 text-red-500 dark:from-gray-700 dark:to-gray-800'
+                    ? 'border-r-4 border-red-500 bg-gradient-to-r from-white/10 to-red-100/25 text-red-500 dark:from-gray-700 dark:to-gray-800'
                     : 'text-gray-500 hover:text-red-500 dark:text-gray-200'
                 } my-2 flex w-full items-center justify-start px-8 py-4 font-thin uppercase transition-colors duration-200`
               }}>
