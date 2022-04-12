@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 const Cancel = () => {
   return (
     <div className=" bg-gray-100">
-      <div className="bg-white p-6  md:mx-auto">
+      <div className="flex min-h-screen items-center justify-center bg-white p-6">
         <div className="text-center">
-          <i className="mdi mdi-alert-circle text-6xl text-orange-400"></i>
-          <h3 className="text-center text-base font-semibold text-gray-900 md:text-2xl">
+          <i className="mdi mdi-alert-circle text-8xl text-orange-400"></i>
+          <h3 className="text-center text-base mt-5 font-semibold text-gray-900 md:text-2xl">
             Payment failed!
           </h3>
           <p className="my-2 text-gray-600">The online payment has been canceled.</p>
