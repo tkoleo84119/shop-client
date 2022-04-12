@@ -89,7 +89,7 @@ const ProductDetail = () => {
   }
 
   const renderCartButton = id => {
-    if (auth?.user?.role === 'admin') return null
+    if (auth?.user?.role === 'admin' || !auth?.isLoggedIn) return null
 
     if (!cart[id]) {
       return (
