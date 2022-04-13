@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
 import { isEmail } from 'validator'
 
-import { REMOVE_FROM_CART, CHANGE_PRO_NUM } from '../actions/type'
+import { ERROR_STATUS, REMOVE_FROM_CART, CHANGE_PRO_NUM } from '../actions/type'
 import { updateUser } from '../actions/Auth'
 
 const Cart = () => {
@@ -60,6 +60,14 @@ const Cart = () => {
   }
 
   const onSettingsSubmit = formValue => {
+    if (Object.keys(cart).length < 1) {
+      dispatch({
+        type: ERROR_STATUS,
+        payload: { status: 'fail', message: 'You do not have any product in your cart' }
+      })
+      return navigate('/')
+    }
+
     const { name, email, phone, address } = formValue
     if (
       name !== user.name ||

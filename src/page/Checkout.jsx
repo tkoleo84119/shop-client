@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useStripe } from '@stripe/react-stripe-js'
 
 import { checkout } from '../actions/Order'
 
 const Checkout = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const stripe = useStripe()
   const { state } = useLocation()
   const auth = useSelector(state => state.auth)
   const cart = useSelector(state => state.cart)
   const user = useSelector(state => state.auth.user)
+
+  useEffect(() => {
+    if (!state) navigate('/')
+  }, [])
 
   const submitOrder = async () => {
     const total = state.subtotal + (state.subtotal >= 1200 ? 0 : 200)
@@ -22,7 +27,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="my-6 flex justify-center min-h-screen items-center">
+    <div className="my-6 flex min-h-screen items-center justify-center">
       <div className="pin-r pin-y flex w-full flex-col rounded-lg bg-white p-8 text-gray-800 shadow-lg md:w-4/5 lg:w-4/5">
         <div className="px-4">
           <div className="border-b p-4">
@@ -31,23 +36,23 @@ const Checkout = () => {
           </div>
           <div className="space-y-1 border-b p-4 hover:bg-gray-50 md:grid md:grid-cols-7 md:space-y-0">
             <p className="uppercase text-gray-600">name</p>
-            <p>{user.name}</p>
+            <p>{user?.name}</p>
           </div>
           <div className="space-y-1 border-b p-4 hover:bg-gray-50 md:grid md:grid-cols-7 md:space-y-0">
             <p className="uppercase text-gray-600">Email</p>
-            <p>{user.email}</p>
+            <p>{user?.email}</p>
           </div>
           <div className="space-y-1 border-b p-4 hover:bg-gray-50 md:grid md:grid-cols-7 md:space-y-0">
             <p className="uppercase text-gray-600">Phone</p>
-            <p>{user.phone}</p>
+            <p>{user?.phone}</p>
           </div>
           <div className="space-y-1 border-b p-4 hover:bg-gray-50 md:grid md:grid-cols-7 md:space-y-0">
             <p className="uppercase text-gray-600">Address</p>
-            <p>{user.address}</p>
+            <p>{user?.address}</p>
           </div>
           <div className="space-y-1 p-4 hover:bg-gray-50 md:grid md:grid-cols-7 md:space-y-0">
             <p className="uppercase text-red-600">Total price</p>
-            <p>${state.subtotal + (state.subtotal >= 1200 ? 0 : 200)}</p>
+            <p>${state?.subtotal + (state?.subtotal >= 1200 ? 0 : 200)}</p>
           </div>
           <a>
             <button
