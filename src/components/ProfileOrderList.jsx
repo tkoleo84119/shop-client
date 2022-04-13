@@ -71,6 +71,9 @@ const ProfileOrderList = () => {
   const orderListTemplate = ({ _id, user, products, createdAt, paid, subTotal, deliveryFee }) => {
     return (
       <tr key={_id}>
+        <td className="border-b border-gray-200 bg-white px-2 py-5 text-sm text-center">
+          <p className="whitespace-no-wrap text-gray-900">{_id}</p>
+        </td>
         <td className="border-b border-gray-200 bg-white py-5 pl-5 text-sm">
           <div className="flex items-center">
             <div className="ml-3">
@@ -120,6 +123,9 @@ const ProfileOrderList = () => {
                 <table className="min-w-full leading-normal">
                   <thead>
                     <tr>
+                      <th className="border-b-2 border-gray-200 bg-gray-100 py-3 pl-5 text-center text-xs font-semibold uppercase tracking-wider text-gray-600">
+                        id
+                      </th>
                       <th className="border-b-2 border-gray-200 bg-gray-100 py-3 pl-5 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
                         User Name
                       </th>
